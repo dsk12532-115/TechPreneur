@@ -14,12 +14,20 @@ class Profile(models.Model):
     user = models.OneToOneField(User, verbose_name='ユーザー',null=True, blank=True, on_delete=models.CASCADE)
     
     id = models.CharField(max_length=6,primary_key=True)
-    email = models.CharField('Email')
+    email = models.CharField('Email',max_length=50)
     age = models.IntegerField('年齢')
     gender = models.IntegerField('性別',choices=GENDER_LIST)
+    time = models.IntegerField('持ち時間')
 
     def __str__(self):
         return self.id+' '+str(self.age)+'歳 ' \
             +self.email+' ' \
-            +dict_gender_list.get(self.gender)+' ' \
-            +str(self.household_num)+'人世帯 ' 
+            +dict_gender_list.get(self.gender)
+
+class Vacant_Seats(models.Model):
+    class Meta:
+        verbose_name = '空席予報データ'
+        verbose_name_plural = '空席予報データ'
+    id = models.CharField(max_length=2,primary_key=True)
+    will_vacant = models.IntegerField('空席までの時間') #例: 2(min)
+    seats_and_user = models.ManyToManyField("Profile")
