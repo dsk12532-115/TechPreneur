@@ -19,12 +19,17 @@ from django.urls import path,include
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
+from expert.views.register import register_view, done_view
+
 def index(request):
     contexts = {}
     return render(request,'index.html',contexts)
 
 urlpatterns = [
     path('', index, name='index'),
-    # path('expert/', include('expert.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/register/', register_view, name='register'),
+    path('accounts/register/done', done_view, name='register_done'),
+    path('expert/', include('expert.urls')),
 ]

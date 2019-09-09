@@ -20,14 +20,23 @@ class Profile(models.Model):
     time = models.IntegerField('持ち時間')
 
     def __str__(self):
+        user_str = ''
+        if self.user is not None:
+            user_str = '(' + self.user.username + ')'
+
         return self.id+' '+str(self.age)+'歳 ' \
             +self.email+' ' \
-            +dict_gender_list.get(self.gender)
+            +dict_gender_list.get(self.gender)+' ' \
+            +str(self.time)+'分'
 
 class Vacant_Seats(models.Model):
     class Meta:
         verbose_name = '空席予報データ'
         verbose_name_plural = '空席予報データ'
-    id = models.CharField(max_length=2,primary_key=True)
-    will_vacant = models.IntegerField('空席までの時間') #例: 2(min)
-    seats_and_user = models.ManyToManyField("Profile")
+    id = models.CharField(max_length=6,primary_key=True)
+    will_vacant = models.ForeignKey(Profile,
+                verbose_name='ユーザー情報',
+                on_delete=models.CASCADE) #例: 2(min)
+    
+    def __str__(self):
+        return self.id+' '+str(self.will_vacant.time)

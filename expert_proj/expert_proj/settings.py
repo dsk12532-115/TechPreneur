@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'expert.apps.ExpertConfig',
     'bootstrap4',
+    'mathfilters',
 ]
 
 MIDDLEWARE = [
@@ -103,7 +104,7 @@ WSGI_APPLICATION = 'expert_proj.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'expert_dojo_db',
+        'NAME': 'expert_db',
         'USER': 'expert_dojo',
         'HOST': 'localhost',
         'PASSWORD': 'expert_dojo_pass',
@@ -148,3 +149,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_URL='/accounts/login'
+LOGIN_REDIRECT_URL='/'
+LOGOUT_REDIRECT_URL='/'
