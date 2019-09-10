@@ -9,7 +9,7 @@ from expert.models import Profile, Vacant_Seats
 count = 0
 
 def vacant(request):
-    vacant_list = Vacant_Seats.objects.all()
+    vacant_list = Vacant_Seats.objects.all().order_by('will_vacant__time')
     paginator = Paginator(vacant_list, 5)
     try:
         page = int(request.GET.get('page'))
