@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
 from expert.views.register import register_view, done_view
@@ -25,6 +25,10 @@ def index(request):
     contexts = {}
     return render(request,'index.html',contexts)
 
+def give_form(request):
+    contexts = {}
+    return render(request,'give_form.html',contexts)
+
 urlpatterns = [
     path('', index, name='index'),
     path('admin/', admin.site.urls),
@@ -32,4 +36,6 @@ urlpatterns = [
     path('accounts/register/', register_view, name='register'),
     path('accounts/register/done', done_view, name='register_done'),
     path('expert/', include('expert.urls')),
+    # path('give_form/', give_form, name='give_form' ),
+    # path('give_form/give', give, name="g_form"),
 ]

@@ -8,11 +8,12 @@ from expert.models import GENDER_LIST, Profile
 class RegisterForm(UserCreationForm):
     age = forms.IntegerField(required=True)
     gender = forms.ChoiceField(choices=GENDER_LIST, required=True)
+    email = forms.CharField(required=True)
     time = forms.IntegerField(required=True)
 
     class Meta:
         model = User
-        fields = ['username', 'password1', 'password2','age','gender','time','email']
+        fields = ['username', 'password1', 'password2','age','email','gender','time']
         labels = {
             'username': 'ユーザー名',
             'password1': 'パスワード',

@@ -25,8 +25,8 @@
    body {
      overflow-x: hidden;
      /* background: linear-gradient(-225deg,#2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%); */
-     background-color: white;
-     background-image: url(http://127.0.0.1:8000/expert_proj/templates/washi-pattern-01.jpg)
+     background-color: #F0F0F0;
+     /* background-image: {% static 'washi-pattern-01.jpg' %}; */
    }
    
    #sidebar-wrapper {
@@ -36,6 +36,7 @@
      -moz-transition: margin .25s ease-out;
      -o-transition: margin .25s ease-out;
      transition: margin .25s ease-out;
+     
    }
    
    #sidebar-wrapper .sidebar-heading {
@@ -83,10 +84,10 @@
       <div class="list-group list-group-flush">
         <a href="/" class="list-group-item list-group-item-action bg-light">ホーム</a>
         <a href="/expert/vacant" class="list-group-item list-group-item-action bg-light">空席情報</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">オーバービュー</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">イベント</a>
+        <a href="/expert/give_form" class="list-group-item list-group-item-action bg-light">情報提供</a>
+        <!-- <a href="#" class="list-group-item list-group-item-action bg-light">イベント</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">プロフィール</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">情報</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">情報</a> -->
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -117,7 +118,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/accounts/login">ログイン</a>
             </li>
-            <li class="nav-item dropdown">
+            <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 
               </a>
@@ -127,7 +128,7 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Something else here</a>
               </div>
-            </li>
+            </li> -->
           </ul>
           {% endif %}
         </div>

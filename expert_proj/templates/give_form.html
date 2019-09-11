@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load static %}
+{% block title %}電車ですわろう{% endblock title %}
+{% block content %}
+{% if user.is_authenticated %}
+<h1>駅までの時間を入力</h1>
+<form method="post" action="{% url '' %}">
+    {% csrf_token %}
+    {% bootstrap_form form layout='horizontal' %}
+    <div class="form-group row">
+        <div class="offset-md-3 col-md-9">
+            <button type="submit" class="btn btn-primary">登録</button>
+        </div>
+    </div>
+</form>
+{% else %}
+<script type="text/javascript">
+    window.location.href = '/';
+</script>
+{% endif %}
+
+{% endblock content %}
