@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 import json
-# from expert.models import Profile
+# from expert.models import Vacant_Seats
 
 
 @login_required

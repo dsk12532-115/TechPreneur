@@ -6,8 +6,10 @@
 {% block content %}
 {% if user.is_authenticated %}
 <h1>情報を入力</h1>
+<img src="{% static 'test4.png' %}">
 <p>入力いただけると、席の情報が表示されます</p>
-<form method="post" action="{% url 'expert:vacant' %}">
+<p>簡単のため車両の一部分のみに限定しています</p>
+<form method="post" action="{% url 'expert:vacant_given' %}">
     {% csrf_token %}
     {% bootstrap_form form layout='horizontal' %}
     <div class="form-group row">

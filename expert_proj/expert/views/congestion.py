@@ -4,14 +4,14 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from django.core.paginator import Paginator
-from expert.models import Profile, Vacant_Seats
+from expert.models import Vacant_Seats, WaitUser
 
 @login_required
 def congestion(request):
-    vacant = Vacant_Seats.objects.all()
-    if vacant.is_vacant:
-        flag[int(vacant.id)] = '空'
-    else:
-        flag[int(vacant.id)] = 'x'
-    seat_id = int(vacant.id)
-    return render(request, 'expert/congestion.html', {'flag': flag[vacant.id], 'seat_id':seat_id})
+    wait_user = WaitUser.objects.all().order_by('-timestamp')
+    paginator = Paginator(wait_user, 10)
+    try:
+        page = int(request.GET.get('page'))
+    except:
+        page = 1
+    return render(request, 'expert/congestion.html', {'wait_user':wait_user})

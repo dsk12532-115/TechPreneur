@@ -77,14 +77,14 @@ class WaitUser(models.Model):
     class Meta:
         verbose_name = '起立ユーザーデータ'
         verbose_name_plural = '起立ユーザーデータ'
-    profile = models.ForeignKey(Profile, verbose_name='ユーザー情報', on_delete=models.CASCADE)
+    # profile = models.ForeignKey(Profile, verbose_name='ユーザー情報', on_delete=models.CASCADE)
     car_number = models.CharField('号車',max_length=2,default='')
     board_station = models.CharField('乗車駅',max_length=70, default='')
     exit_station = models.CharField('降車駅',max_length=70, default='')
     timestamp = models.DateTimeField('タイムスタンプ', default=timezone.now)
 
     def __str__(self):
-        return self.profile.id+' '+self.car_number+'号車 '+'乗車駅は'+self.board_station+'駅 '+'降車駅は'+self.exit_station+'駅'\
+        return self.car_number+'号車 '+'乗車駅は'+self.board_station+'駅 '+'降車駅は'+self.exit_station+'駅'\
         +' 日時 '+str(self.timestamp)
 
 

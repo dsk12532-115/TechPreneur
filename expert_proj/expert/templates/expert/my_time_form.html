@@ -9,6 +9,7 @@
 <img src="{% static 'test4.png' %}">
 <p>idとは、画像にある番号のことです</p>
 <p>進行方向は左(1がある側)です</p>
+<p>簡単のため車両の一部分のみに限定しています</p>
 <form method="post" action="{% url 'expert:vacant' %}">
     {% csrf_token %}
     {% bootstrap_form form layout='horizontal' %}

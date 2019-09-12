@@ -85,7 +85,7 @@
         <a href="/" class="list-group-item list-group-item-action bg-light">ホーム</a>
         <a href="/expert/given_form" class="list-group-item list-group-item-action bg-light">空席予想時間<br>(座られていない方向け)</a>
         <a href="/expert/give_form" class="list-group-item list-group-item-action bg-light">情報提供<br>(既に座られている方用)</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">イベント</a>
+        <a href="/expert/congestion" class="list-group-item list-group-item-action bg-light">混雑状況</a>
         <!-- <a href="#" class="list-group-item list-group-item-action bg-light">プロフィール</a> -->
         <!-- <a href="#" class="list-group-item list-group-item-action bg-light">情報</a> -->
       </div>
@@ -106,7 +106,7 @@
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                 {% if user.is_authenticated %}
             <li class="nav-item active">
-              <a class="nav-link" href="/">マイページ<span class="sr-only">現在</span></a>
+              <a class="nav-link" href="/expert/mypage">マイページ<span class="sr-only">現在</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/accounts/logout">ログアウト</a>

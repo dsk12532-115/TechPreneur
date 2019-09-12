@@ -3,19 +3,25 @@
 {% load static %}
 {% block title %}電車ですわろう{% endblock title %}
 {% block content %}
-<h4 class="mt-4 border-bottom">空席情報</h4>
+<h4 class="mt-4 border-bottom">混雑状況</h4>
 
 {% if user.is_authenticated %}
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <th scope="col">座席番号</th>
+            <th scope="col">車両番号</th>
+            <th scope="col">乗車駅</th>
+            <th scope="col">降車駅</th>
+            <th scope="col">入力された時間</th>
         </tr>
     </thead>
     <tbody>
-        {% for vacant in vacant_seats %}
+        {% for user in wait_user %}
         <tr>
-            <td>{{ vacant.id }}</td>
+            <td>{{ user.car_number }}</td>
+            <td>{{ user.board_station }}</td>
+            <td>{{ user.exit_station }}</td>
+            <td>{{ user.timestamp }}</td>
         </tr>
         {% endfor %}
     </tbody>
