@@ -5,11 +5,16 @@ from django.contrib import messages
 
 from django.core.paginator import Paginator
 from expert.models import Profile, Vacant_Seats
+from expert.give_form import GiveForm
 
 count = 0
 
 def vacant(request):
-    vacant_list = Vacant_Seats.objects.all().order_by('will_vacant')
+    if request.method == "POST":
+        form = GiveForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+    vacant_list = Vacant_Seats.objects.all().order_by('timestamp')
     paginator = Paginator(vacant_list, 5)
     try:
         page = int(request.GET.get('page'))

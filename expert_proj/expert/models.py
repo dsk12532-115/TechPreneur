@@ -60,17 +60,19 @@ class Vacant_Seats(models.Model):
     door_number = models.CharField('進行方向からのドア数',max_length=1,help_text='進行方向に最も近い座席の場合は0です',default='')
     seat_place = models.IntegerField('進行方向に対する場所',choices=LR_LIST,default=2)
     seat_number = models.CharField('進行方向からの席数',max_length=1,default='')
-    will_vacant = models.ForeignKey(Profile,
-                verbose_name='ユーザー情報',
-                on_delete=models.CASCADE) #例: 2(min)
+    # will_vacant = models.ForeignKey(Profile,
+    #             verbose_name='ユーザー情報',
+    #             on_delete=models.CASCADE) #例: 2(min)
     vacant_time = models.IntegerField('待ち時間', default=0)
-    # is_vacant = models.NullBooleanField(null=True)
+    timestamp = models.DateTimeField('タイムスタンプ', auto_now_add=True)
+    is_vacant = models.BooleanField(default=True)
     
     def __str__(self):
         return self.id+' '\
         +'空席予想時間は'+str(self.vacant_time)+'分 '\
         +self.car_number+'号車 '+'進行方向から'+self.door_number+'ドア目 '\
-        +'進行方向に対して'+dict_lr_list.get(self.seat_place)+'側 '+'進行方向から'+self.seat_number+'席目'
+        +'進行方向に対して'+dict_lr_list.get(self.seat_place)+'側 '+'進行方向から'+self.seat_number+'席目'\
+        +' 日時 '+str(self.timestamp)
 
 
 

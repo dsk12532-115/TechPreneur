@@ -104,7 +104,7 @@ WSGI_APPLICATION = 'expert_proj.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'expert_db',
+        'NAME': 'last_expert',
         'USER': 'expert_dojo',
         'HOST': 'localhost',
         'PASSWORD': 'expert_dojo_pass',
