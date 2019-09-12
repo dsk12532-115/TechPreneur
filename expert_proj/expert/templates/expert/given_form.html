@@ -1,14 +1,12 @@
 {% extends "base.html" %}
 {% load bootstrap4 %}
 {% load staticfiles %}
-{% block title %}情報提供フォーム{% endblock title %}
+{% block title %}情報入力フォーム{% endblock title %}
 
 {% block content %}
 {% if user.is_authenticated %}
-<h1>駅までの時間を入力</h1>
-<img src="{% static 'test4.png' %}">
-<p>idとは、画像にある番号のことです</p>
-<p>進行方向は左(1がある側)です</p>
+<h1>情報を入力</h1>
+<p>入力いただけると、席の情報が表示されます</p>
 <form method="post" action="{% url 'expert:vacant' %}">
     {% csrf_token %}
     {% bootstrap_form form layout='horizontal' %}
@@ -23,5 +21,4 @@
     window.location.href = '/';
 </script>
 {% endif %}
-
 {% endblock content %}

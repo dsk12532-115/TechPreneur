@@ -5,9 +5,10 @@
 {% block title %}予想時間{% endblock title %}
 
 {% block content %}
-<h4 class="mt-4 border-bottom">空くまでの予想時間</h4>
+<h4 class="mt-4 border-bottom">各席の降車駅</h4>
 
 <p>以下は全て進行方向を基準にしています</p>
+<p>簡単のため車両の一部分のみに限定しています</p>
 <p>進行方向は<b>左</b>(1がある側)です</p>
 <img src="{% static 'test4.png' %}">
 {% if user.is_authenticated %}
@@ -17,6 +18,7 @@
             <th scope="col">座席番号</th>
             <th scope="col">号車</th>
             <th scope="col">降りる駅</th>
+            <th scope="col">入力された時間</th>
             <!-- <th scope="col">空席予想時間(分)</th>
             <th scope="col">号車</th>
             <th scope="col">ドア数</th>
@@ -27,9 +29,10 @@
     <tbody>
         {% for vacant in vacant_seats %}
         <tr>
-            <td>{{ vacant.id }}</td>
+            <td>{{ vacant.seat_id }}</td>
             <td>{{ vacant.car_number }}</td>
             <td>{{ vacant.exit_station }}</td>
+            <td>{{ vacant.timestamp }}</td>
             <!-- <td>{{ vacant.vacant_time }}</td>
             <td>{{ vacant.car_number }}</td>
             <td>{{ vacant.door_number }}</td>

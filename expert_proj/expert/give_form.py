@@ -10,7 +10,7 @@ from expert.models import Vacant_Seats, Profile, LR_LIST
 
 
 class GiveForm(forms.ModelForm):
-    id = forms.CharField(required=True)
+    seat_id = forms.CharField(required=True)
     car_number = forms.CharField(required=True)
     # door_number = forms.CharField(required=True)
     # seat_place = forms.ChoiceField(choices=LR_LIST, required=True)
@@ -20,9 +20,9 @@ class GiveForm(forms.ModelForm):
     exit_station = forms.CharField(required=True)
     class Meta:
         model = Vacant_Seats
-        fields = ['id','car_number','exit_station']
+        fields = ['seat_id','car_number','exit_station']
         labels = {
-            'id':'座席のid(画像参照)',
+            'seat_id':'座席のid(画像参照)',
             'car_number':'号車',
             # 'door_number':'ドア数',
             # 'seat_place':'進行方向に対して右か左か',
@@ -33,7 +33,7 @@ class GiveForm(forms.ModelForm):
         }
     
     def save(self, commit=True):
-        id = self.cleaned_data['id']
+        seat_id = self.cleaned_data['seat_id']
         car_number = self.cleaned_data['car_number']
         # door_number = self.cleaned_data['door_number']
         # seat_place = self.cleaned_data['seat_place']
@@ -41,7 +41,7 @@ class GiveForm(forms.ModelForm):
         # vacant_time = self.cleaned_data['vacant_time']
         # board_station = self.cleaned_data['board_station']
         exit_station = self.cleaned_data['exit_station']
-        vacant_seats = Vacant_Seats(id=id,car_number=car_number,exit_station=exit_station)
+        vacant_seats = Vacant_Seats(seat_id=seat_id,car_number=car_number,exit_station=exit_station)
         vacant_seats.save()
 
 #,'door_number','seat_place','seat_number','vacant_time','board_station',

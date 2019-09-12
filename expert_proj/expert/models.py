@@ -55,7 +55,7 @@ class Vacant_Seats(models.Model):
     class Meta:
         verbose_name = '空席予報データ'
         verbose_name_plural = '空席予報データ'
-    id = models.CharField(max_length=6,primary_key=True)
+    seat_id = models.CharField(max_length=2,default='')
     car_number = models.CharField('号車',max_length=2,default='')
     door_number = models.CharField('進行方向からのドア数',max_length=1,help_text='進行方向に最も近い座席の場合は0です',default='')
     seat_place = models.IntegerField('進行方向に対する場所',choices=LR_LIST,default=2)
@@ -70,7 +70,21 @@ class Vacant_Seats(models.Model):
     is_vacant = models.BooleanField(default=True)
     
     def __str__(self):
-        return '席id '+self.id+' '+self.car_number+'号車 '+'降車駅は'+self.exit_station+'駅'\
+        return '席id '+self.seat_id+' '+self.car_number+'号車 '+'降車駅は'+self.exit_station+'駅'\
+        +' 日時 '+str(self.timestamp)
+
+class WaitUser(models.Model):
+    class Meta:
+        verbose_name = '起立ユーザーデータ'
+        verbose_name_plural = '起立ユーザーデータ'
+    profile = models.ForeignKey(Profile, verbose_name='ユーザー情報', on_delete=models.CASCADE)
+    car_number = models.CharField('号車',max_length=2,default='')
+    board_station = models.CharField('乗車駅',max_length=70, default='')
+    exit_station = models.CharField('降車駅',max_length=70, default='')
+    timestamp = models.DateTimeField('タイムスタンプ', default=timezone.now)
+
+    def __str__(self):
+        return self.profile.id+' '+self.car_number+'号車 '+'乗車駅は'+self.board_station+'駅 '+'降車駅は'+self.exit_station+'駅'\
         +' 日時 '+str(self.timestamp)
 
 
