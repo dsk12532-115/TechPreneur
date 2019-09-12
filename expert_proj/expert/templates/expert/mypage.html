@@ -11,7 +11,10 @@
     <p>年齢: {{ user.profile.age }}歳</p>
     <p>性別: {{ user.profile.get_gender_display }}</p>
     <p>Eメールアドレス: {{ user.profile.email }}</p>
-    <p></p>
+    <p>登録された乗車駅: {{ user.profile.board_station }}</p>
+    <p>登録された降車駅: {{ user.profile.exit_station }}</p>
+    <p>ゆずりポイント: {{ user.profile.given_point }}</p>
+    <p>ゆずられポイント: {{ user.profile.give_point }}</p>
 
     <!-- <hr>
     <h5>物件評価履歴</h5>

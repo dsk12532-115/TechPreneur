@@ -21,6 +21,8 @@ class Profile(models.Model):
     age = models.IntegerField('年齢')
     gender = models.IntegerField('性別',choices=GENDER_LIST)
     time = models.IntegerField('持ち時間')
+    board_station = models.CharField('いつも乗る駅',max_length=70,default='')
+    exit_station = models.CharField('いつも降りる駅',max_length=70,default='')
     given_point = models.IntegerField('ゆずられポイント',default=0)
     give_point = models.IntegerField('ゆずりポイント',default=10)
 
@@ -33,6 +35,8 @@ class Profile(models.Model):
             +self.email+' ' \
             +dict_gender_list.get(self.gender)+' ' \
             +str(self.time)+'分 '\
+            +'いつも乗る駅 '+self.board_station+'駅'\
+            +'いつも降りる駅'+self.exit_station+'駅'\
             +'予定通り席に座れた回数 '+str(self.given_point)+'回 '\
             +'予定通り席を空けた回数 '+str(self.give_point)+'回'
 

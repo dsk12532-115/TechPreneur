@@ -9,11 +9,13 @@ class RegisterForm(UserCreationForm):
     age = forms.IntegerField(required=True)
     gender = forms.ChoiceField(choices=GENDER_LIST, required=True)
     email = forms.CharField(required=True)
-    time = forms.IntegerField(required=True)
+    board_station = forms.CharField(required=False)
+    exit_station = forms.CharField(required=False)
+    time = forms.IntegerField(required=False)
 
     class Meta:
         model = User
-        fields = ['username', 'password1', 'password2','age','email','gender','time']
+        fields = ['username', 'password1', 'password2','age','email','gender','board_station','exit_station','time']
         labels = {
             'username': 'ユーザー名',
             'password1': 'パスワード',
@@ -21,7 +23,9 @@ class RegisterForm(UserCreationForm):
             'age': '年齢',
             'email':'Eメールアドレス',
             'gender': '性別',
-            'time': 'あなたが降りるまでの時間',
+            'board_station': 'よく乗る駅',
+            'exit_station': 'よく降りる駅',
+            'time':'よくある乗車時間',
         }
 
     def save(self, commit=True):
@@ -40,9 +44,11 @@ class RegisterForm(UserCreationForm):
         age = self.cleaned_data['age']
         email = self.cleaned_data['email']
         gender = self.cleaned_data['gender']
+        board_station = self.cleaned_data['board_station']
+        exit_station = self.cleaned_data['exit_station']
         time = self.cleaned_data['time']
 
-        profile = Profile(id=prof_id,age=age,gender=gender,email=email,time=time,user_id=user.id)
+        profile = Profile(id=prof_id,age=age,gender=gender,email=email,board_station=board_station,exit_station=exit_station,time=time,user_id=user.id)
         profile.save()
 
         return user
