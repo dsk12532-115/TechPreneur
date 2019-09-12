@@ -9,26 +9,32 @@
 
 <p>以下は全て進行方向を基準にしています</p>
 <p>進行方向は<b>左</b>(1がある側)です</p>
-<img src="{% static 'test.png' %}">
+<img src="{% static 'test4.png' %}">
 {% if user.is_authenticated %}
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <th scope="col">空席予想時間(分)</th>
+            <th scope="col">座席番号</th>
+            <th scope="col">号車</th>
+            <th scope="col">降りる駅</th>
+            <!-- <th scope="col">空席予想時間(分)</th>
             <th scope="col">号車</th>
             <th scope="col">ドア数</th>
             <th scope="col">向き</th>
-            <th scope="col">席</th>
+            <th scope="col">席</th> -->
         </tr>
     </thead>
     <tbody>
         {% for vacant in vacant_seats %}
         <tr>
-            <td>{{ vacant.vacant_time }}</td>
+            <td>{{ vacant.id }}</td>
+            <td>{{ vacant.car_number }}</td>
+            <td>{{ vacant.exit_station }}</td>
+            <!-- <td>{{ vacant.vacant_time }}</td>
             <td>{{ vacant.car_number }}</td>
             <td>{{ vacant.door_number }}</td>
             <td>{{ vacant.get_seat_place_display }}</td>
-            <td>{{ vacant.seat_number }}</td>
+            <td>{{ vacant.seat_number }}</td> -->
         </tr>
         {% endfor %}
     </tbody>

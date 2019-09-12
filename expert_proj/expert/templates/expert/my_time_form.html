@@ -6,6 +6,9 @@
 {% block content %}
 {% if user.is_authenticated %}
 <h1>駅までの時間を入力</h1>
+<img src="{% static 'test4.png' %}">
+<p>idとは、画像にある番号のことです</p>
+<p>進行方向は左(1がある側)です</p>
 <form method="post" action="{% url 'expert:vacant' %}">
     {% csrf_token %}
     {% bootstrap_form form layout='horizontal' %}

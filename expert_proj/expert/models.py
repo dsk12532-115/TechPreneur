@@ -64,14 +64,13 @@ class Vacant_Seats(models.Model):
     #             verbose_name='ユーザー情報',
     #             on_delete=models.CASCADE) #例: 2(min)
     vacant_time = models.IntegerField('待ち時間', default=0)
-    timestamp = models.DateTimeField('タイムスタンプ', auto_now_add=True)
+    timestamp = models.DateTimeField('タイムスタンプ', default=timezone.now)
+    board_station = models.CharField('乗車駅',max_length=70, default='')
+    exit_station = models.CharField('降車駅',max_length=70, default='')
     is_vacant = models.BooleanField(default=True)
     
     def __str__(self):
-        return self.id+' '\
-        +'空席予想時間は'+str(self.vacant_time)+'分 '\
-        +self.car_number+'号車 '+'進行方向から'+self.door_number+'ドア目 '\
-        +'進行方向に対して'+dict_lr_list.get(self.seat_place)+'側 '+'進行方向から'+self.seat_number+'席目'\
+        return '席id '+self.id+' '+self.car_number+'号車 '+'降車駅は'+self.exit_station+'駅'\
         +' 日時 '+str(self.timestamp)
 
 
